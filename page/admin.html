@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Mon Fan Club</title>
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="../index.css"/>
+  <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    body {
+      background: linear-gradient(white, blue, red);
+      min-height: 100vh; 
+      margin: 0; 
+    }
+
+    #clickCounter {
+      font-size: 1.5rem;
+      margin: 20px;
+    }
+  </style> 
+</head>
+<body>  
+<header class="container">
+  <div class="shadow-lg w-100 p-3 fs-3 mb-2 bg-gradient rounded d-flex justify-content-center align-items-center position-relative" style="height: 100px; background-color: #00f5ff;">
+   <span class="text-gradient" style="margin-left: 50px;">Clique 1 Million de fois et t'auras une nude de moi</span>
+    <button class="btn btn-primary position-absolute" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" style="left: 10px; background-color: #00f5ff;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-list" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M2 2h12a1 1 0 0 1 0 2H2a1 1 0 0 1 0-2zm0 5h12a1 1 0 0 1 0 2H2a1 1 0 0 1 0-2zm0 5h12a1 1 0 0 1 0 2H2a1 1 0 0 1 0-2z"/>
+      </svg>
+    </button>
+  </div>
+  </header>
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title fs-3 position-absolute start-50 translate-middle" id="offcanvasExampleLabel">Menu</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column align-items-center">
+      <button type="button" class="btn btn-index mb-3" onclick="window.location.href='../index.html'" style="margin-top: 30px;">
+        Acceuil
+      </button>
+      <button type="button" class="btn btn-instagram mb-3" onclick="window.location.href='instagram.html'" style="margin-top: 30px;">
+        Instagram
+      </button>
+      <button type="button" class="btn btn-snapchat mb-3" onclick="window.location.href='snapchat.html'" style="margin-top: 30px;">
+        Snapchat
+      </button>
+      <button type="button" class="btn btn-facebook mb-3" onclick="window.location.href='facebook.html'" style="margin-top: 30px;">
+        Facebook
+      </button>
+      <button type="button" class="btn btn-bereal mb-3" onclick="window.location.href='bereal.html'" style="margin-top: 30px;">
+        BeReal
+      </button>
+      <button type="button" class="btn btn-discord mb-3" onclick="window.location.href='discord.html'" style="margin-top: 30px;">
+        Discord
+      </button>
+      <button type="button" class="btn btn-tiktok mb-3" onclick="window.location.href='tiktok.html'" style="margin-top: 30px;">
+        TikTok
+      </button>
+      <button type="button" class="btn btn-admin mb-3" onclick="window.location.href='admin.html'" style="margin-top: 30px;">
+        ⚠️Que pour les vip du vip⚠️
+      </button>
+    </div>
+  </div>
+
+<main class="d-flex flex-column align-items-center" style="position: relative; height: 500px;">
+  <!-- Compteur de clics -->
+  <div id="clickCounter">Cliques Restants : 1 000</div>
+  <!-- Bouton Bootstrap qui change de position -->
+  <button id="randomButton" class="btn btn-primary">⚠️ICI⚠️</button>
+</main>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    let clickCount = 1000;
+    const clickCounter = document.getElementById('clickCounter');
+    const randomButton = document.getElementById('randomButton');
+
+    randomButton.addEventListener('click', () => {
+      clickCount--;
+      clickCounter.textContent = `Cliques Restants : ${clickCount}`;
+
+      if (clickCount <= 0) {
+        // Création du popup
+        const overlay = document.createElement('div');
+        overlay.style.position = 'fixed';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.width = '100%';
+        overlay.style.height = '100%';
+        overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        overlay.style.display = 'flex';
+        overlay.style.flexDirection = 'column';
+        overlay.style.justifyContent = 'center';
+        overlay.style.alignItems = 'center';
+        overlay.style.zIndex = '9999';
+
+        const message = document.createElement('p');
+        message.innerHTML  = "BAAAAAHHHH D'ACCORD <br> Tu veux pas une clope plutôt ? ";
+        message.style.color = 'white';
+        message.style.fontSize = '24px';
+        message.style.marginBottom = '20px';
+
+        const image = document.createElement('img');
+        image.src = '../image/admin/nude.png'; // chemin de ton image
+        image.style.maxWidth = '300px';
+        image.style.marginBottom = '20px';
+
+        const button = document.createElement('button');
+        button.textContent = 'OK';
+        button.style.padding = '10px 20px';
+        button.style.fontSize = '18px';
+        button.style.cursor = 'pointer';
+        button.style.border = 'none';
+        button.style.borderRadius = '5px';
+        button.style.backgroundColor = '#ff4d4d';
+        button.style.color = 'white';
+
+        button.addEventListener('click', () => {
+          document.body.removeChild(overlay);
+        });
+
+        overlay.appendChild(image);
+        overlay.appendChild(message);
+        overlay.appendChild(button);
+        document.body.appendChild(overlay);
+
+        // Optionnel : désactiver le bouton après 0 clic
+        randomButton.disabled = true;
+        return;
+      }
+
+      const main = document.querySelector('main');
+      const maxX = main.clientWidth - randomButton.clientWidth;
+      const maxY = main.clientHeight - randomButton.clientHeight;
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      randomButton.style.position = 'absolute';
+      randomButton.style.left = `${randomX}px`;
+      randomButton.style.top = `${randomY}px`;
+    });
+  });
+</script>
+
+</body>
+</html>
